@@ -5,11 +5,6 @@
     font-size: 30px;
 }
 
-img {
-    max-width: 300px;
-    max-height: 300px;
-}
-
 p {
     width: 400px;
     height: auto;
@@ -18,4 +13,25 @@ p {
     border-radius: .1rem;
     text-align: center;
     padding: 10px;
+}
+
+img {
+    max-width: 300px;
+    max-height: 300px;
+    box-shadow: -0.9px 0.1px 6.1px 0.2px #696666;
+}
+
+#my_gallery {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+}
+
+i {
+    cursor: pointer;
+}
+
+i:hover {
+    color: dodgerblue;
 }

@@ -4,7 +4,7 @@ const app = (function () {
     "use strict";
     var dom = {},
         count = 0,
-        imgTableau = ["https://images.unsplash.com/photo-1534832796130-37cfe118e925?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=83fca2459a46db84a04e807aadd0c38c&auto=format&fit=crop&w=749&q=80", "https://images.unsplash.com/photo-1534801022022-6e319a11f249?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7fc2e7b7e58cdfc7261fbb3968e633fc&auto=format&fit=crop&w=401&q=80", "https://images.unsplash.com/photo-1534824681605-7eb16e0d2315?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c6e5f2fc4eb38f881029a7819ed1a0f7&auto=format&fit=crop&w=375&q=80", "https://images.unsplash.com/photo-1534819050283-3d231482d47e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a9b0e72bba256e52cb871b34c06cba7d&auto=format&fit=crop&w=723&q=80"];
+        imgTableau = ["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/NYCS-bull-trans-1.svg/1024px-NYCS-bull-trans-1.svg.png", "http://getdrawings.com/cliparts/number-2-clipart-33.png", "http://msa-serrurier.fr/wp-content/uploads/2018/05/NYCS-bull-trans-3.svg.png", "https://www.brainz.org/wp-content/uploads/2017/06/4-1.png"];
 
 
 
@@ -13,27 +13,42 @@ const app = (function () {
         return {
             div: document.getElementById("my_gallery"),
             next: document.getElementById('move_next'),
+            previous: document.getElementById('move_previous'),
             image: document.getElementById("image")
         };
     };
 
     const moveToNextImg = function moveToNextImg() {
+
         if (count < imgTableau.length - 1) {
-            dom.image.src = imgTableau[count];
             count += 1;
-        } else {
             dom.image.src = imgTableau[count];
+        } else {
             count = 0;
+            dom.image.src = imgTableau[count];
+        }
+    };
+    const moveToPreviousImg = function moveToPreviousImg() {
+        if (count === 0) {
+            count = imgTableau.length - 1;
+            dom.image.src = imgTableau[count];
+
+        } else {
+            count--;
+            dom.image.src = imgTableau[count];
         }
     };
 
     const eventsHandler = function handleEvents() {
         dom.next.onclick = moveToNextImg;
+        dom.previous.onclick = moveToPreviousImg;
+
     };
 
     var start = function () {
         dom = getDOMRefs();
         eventsHandler();
+        dom.image.src = imgTableau[0];
     };
     document.addEventListener("DOMContentLoaded", start);
 
